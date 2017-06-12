@@ -1,0 +1,25 @@
+{
+  "name": "varnalab-finance",
+  "version": "1.0.0",
+  "description": "VarnaLab Finance",
+  "private": true,
+  "keywords": [],
+  "license": "MIT",
+  "homepage": "https://github.com/varnalab/varnalab-finance",
+  "author": "Simeon Velichkov <simeonvelichkov@gmail.com> (https://simov.github.io)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/varnalab/varnalab-finance.git"
+  },
+  "dependencies": {
+    "mithril": "^1.1.1",
+    "mithril-node-render": "^2.1.0"
+  },
+  "devDependencies": {},
+  "main": "",
+  "files": [],
+  "scripts": {},
+  "engines": {
+    "node": ">=6.0.0"
+  }
+}
