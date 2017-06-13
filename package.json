@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "mithril": "^1.1.1",
-    "mithril-node-render": "^2.1.0"
+    "mithril-node-render": "^2.1.0",
+    "slugify": "^1.1.0"
   },
   "devDependencies": {},
   "main": "",
