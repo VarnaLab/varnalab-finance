@@ -79,12 +79,13 @@ else if (argv.render) {
     if (argv.out) {
       fs.writeFileSync(
         path.resolve(process.cwd(), argv.out, 'index.html'),
-        '<!DOCTYPE html>\n' + html,
+        html,
         'utf8'
       )
     }
     else {
-      console.log('<!DOCTYPE html>\n' + html)
+      console.log(html)
     }
   })
+  .catch((err) => console.error(err))
 }
