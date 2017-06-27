@@ -2,31 +2,27 @@
 var argv = require('minimist')(process.argv.slice(2))
 
 if (argv.help) {
-  console.log('--config /path/to/config.json')
-  console.log('--sync year')
-  console.log('--dump /path/to/location/')
-  console.log('--parse /path/to/location/')
-  console.log('--render /path/to/location/')
+  console.log('--id [Spreadsheet ID]')
+  console.log('--sync [2017]')
+  console.log('--parse /path/to/csv/dump/location/')
+  console.log('--render /path/to/parsed/finance.json')
   console.log('--out /path/to/output/location/')
   process.exit()
 }
 
-if (!argv.config) {
-  console.log('Specify --config /path/to/config.json')
+if (!argv.id && argv.sync) {
+  console.log('Specify --id [Spreadsheet ID]')
   process.exit()
 }
 
-if (!argv.sync && !argv.dump && !argv.parse && !argv.render) {
-  console.log('--[sync|dump|parse|render]')
+if (!argv.sync && !argv.parse && !argv.render) {
+  console.log('--[sync|parse|render]')
   process.exit()
 }
 
 
 var fs = require('fs')
 var path = require('path')
-
-var env = process.env.NODE_ENV || argv.env || 'development'
-var config = require(path.resolve(process.cwd(), argv.config))[env]
 
 var sync = require('../lib/sync')(require('../config/purest'))
 var parse = require('../lib/parse')()
@@ -35,14 +31,14 @@ var render = require('../lib/render')
 
 if (argv.sync) {
   ;(async () => {
-    var sheets = await sync.spreadsheet(config.id)
+    var sheets = await sync.spreadsheet(argv.id)
 
     // specific year
     if (typeof argv.sync === 'number') {
       sheets = sheets.filter((sheet) => sheet.year === argv.sync)
     }
 
-    var files = await sync.files(config.id, sheets)
+    var files = await sync.files(argv.id, sheets)
 
     sheets.forEach((sheet, index) => {
       if (argv.out) {
