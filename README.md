@@ -5,8 +5,7 @@
 ## `--sync` All Years
 
 ```bash
-node \
-  bin/ \
+node bin/ \
   --id 14z48BCI1EKQvvtBV47PRq9I3r9lVL5IQbdTsKXcf25w \
   --sync \
   --out /path/to/output/location/
@@ -15,8 +14,7 @@ node \
 ## `--sync` Specific Year
 
 ```bash
-node \
-  bin/ \
+node bin/ \
   --id 14z48BCI1EKQvvtBV47PRq9I3r9lVL5IQbdTsKXcf25w \
   --sync 2017 \
   --out /path/to/output/location/
@@ -25,8 +23,7 @@ node \
 ## `--parse` CSV to JSON
 
 ```bash
-node \
-  bin/ \
+node bin/ \
   --parse /path/to/csv/dump/location/ \
   --out /path/to/output/location/
 ```
@@ -34,8 +31,7 @@ node \
 ## `--render` JSON to HTML
 
 ```bash
-node \
-  bin/ \
+node bin/ \
   --render /path/to/parsed/finance.json \
   --out /path/to/output/location/
 ```
