@@ -12,8 +12,12 @@
     "url": "https://github.com/varnalab/varnalab-finance.git"
   },
   "dependencies": {
+    "@request/client": "^0.1.0",
+    "cheerio": "^1.0.0-rc.1",
+    "minimist": "^1.2.0",
     "mithril": "^1.1.1",
     "mithril-node-render": "^2.1.0",
+    "purest": "^3.1.0",
     "slugify": "^1.1.0"
   },
   "devDependencies": {},
@@ -21,6 +25,6 @@
   "files": [],
   "scripts": {},
   "engines": {
-    "node": ">=6.0.0"
+    "node": "^8.0.0"
   }
 }

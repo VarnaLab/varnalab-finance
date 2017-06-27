@@ -1,0 +1,11 @@
+{
+  "google": {
+    "https://docs.google.com": {
+      "d/{endpoint}": {
+        "__path": {
+          "alias": "__default"
+        }
+      }
+    }
+  }
+}

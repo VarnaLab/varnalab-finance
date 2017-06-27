@@ -1,4 +1,5 @@
 npm-debug.log
 coverage/
+dump/
 node_modules/
-data.json
+package-lock.json
