@@ -45,11 +45,16 @@ if (argv.sync) {
     var files = await sync.files(config.id, sheets)
 
     sheets.forEach((sheet, index) => {
-      fs.writeFileSync(
-        path.resolve(process.cwd(), argv.out, sheet.year + '.csv'),
-        files[index],
-        'utf8'
-      )
+      if (argv.out) {
+        fs.writeFileSync(
+          path.resolve(process.cwd(), argv.out, sheet.year + '.csv'),
+          files[index],
+          'utf8'
+        )
+      }
+      else {
+        console.log(files[index])
+      }
     })
   })()
   .catch((err) => console.error(err))
@@ -58,11 +63,16 @@ if (argv.sync) {
 else if (argv.parse) {
   parse.dump(path.resolve(process.cwd(), argv.parse))
     .then((result) => {
-      fs.writeFileSync(
-        path.resolve(process.cwd(), argv.out, 'finance.json'),
-        JSON.stringify(result, null, 2),
-        'utf8'
-      )
+      if (argv.out) {
+        fs.writeFileSync(
+          path.resolve(process.cwd(), argv.out, 'finance.json'),
+          JSON.stringify(result, null, 2),
+          'utf8'
+        )
+      }
+      else {
+        console.log(result)
+      }
     })
     .catch((err) => console.error(err))
 }
@@ -70,9 +80,15 @@ else if (argv.parse) {
 else if (argv.render) {
   var data = require(path.resolve(process.cwd(), argv.render))
   render(data).then((html) => {
-    fs.writeFileSync(
-      path.resolve(process.cwd(), argv.out, 'index.html'),
-      '<!DOCTYPE html>\n' + html,
-      'utf8')
-    })
+    if (argv.out) {
+      fs.writeFileSync(
+        path.resolve(process.cwd(), argv.out, 'index.html'),
+        '<!DOCTYPE html>\n' + html,
+        'utf8'
+      )
+    }
+    else {
+      console.log('<!DOCTYPE html>\n' + html)
+    }
+  })
 }
