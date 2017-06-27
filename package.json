@@ -14,13 +14,16 @@
   "dependencies": {
     "@request/client": "^0.1.0",
     "cheerio": "^1.0.0-rc.1",
+    "csv-parser": "^1.11.0",
     "minimist": "^1.2.0",
+    "purest": "^3.1.0"
+  },
+  "devDependencies": {
+    "@request/log": "^0.1.0",
     "mithril": "^1.1.1",
     "mithril-node-render": "^2.1.0",
-    "purest": "^3.1.0",
     "slugify": "^1.1.0"
   },
-  "devDependencies": {},
   "main": "",
   "files": [],
   "scripts": {},

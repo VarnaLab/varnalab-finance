@@ -1,7 +1,7 @@
 {
   "google": {
     "https://docs.google.com": {
-      "d/{endpoint}": {
+      "spreadsheets/d/{endpoint}": {
         "__path": {
           "alias": "__default"
         }
