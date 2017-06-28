@@ -25,6 +25,9 @@
     "mithril-node-render": "^2.1.0",
     "slugify": "^1.1.0"
   },
+  "bin": {
+    "varnalab-finance": "./bin"
+  },
   "main": "",
   "files": [],
   "scripts": {},
