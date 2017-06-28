@@ -26,9 +26,9 @@
     "slugify": "^1.1.0"
   },
   "bin": {
-    "varnalab-finance": "./bin"
+    "varnalab-finance": "./bin/"
   },
-  "main": "",
+  "main": "./lib/",
   "files": [],
   "scripts": {},
   "engines": {
