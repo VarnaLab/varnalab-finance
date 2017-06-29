@@ -28,11 +28,19 @@ node bin/ \
   --out /path/to/output/location/
 ```
 
-## `--render` JSON to HTML
+## `--stats` Finance JSON to Stats JSON
 
 ```bash
 node bin/ \
-  --render /path/to/parsed/finance.json \
+  --stats /path/to/parsed/finance.json \
+  --out /path/to/output/location/
+```
+
+## `--render` Stats JSON to HTML
+
+```bash
+node bin/ \
+  --render /path/to/generated/stats.json \
   --out /path/to/output/location/
 ```
 

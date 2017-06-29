@@ -6,7 +6,8 @@ if (argv.help) {
   console.log('--id [Spreadsheet ID]')
   console.log('--sync [2017]')
   console.log('--parse /path/to/csv/dump/location/')
-  console.log('--render /path/to/parsed/finance.json')
+  console.log('--stats /path/to/parsed/finance.json')
+  console.log('--render /path/to/generated/stats.json')
   console.log('--out /path/to/output/location/')
   process.exit()
 }
@@ -16,8 +17,8 @@ if (!argv.id && argv.sync) {
   process.exit()
 }
 
-if (!argv.sync && !argv.parse && !argv.render) {
-  console.log('--[sync|parse|render]')
+if (!argv.sync && !argv.parse && !argv.stats && !argv.render) {
+  console.log('--[sync|parse|stats|render]')
   process.exit()
 }
 
@@ -27,6 +28,7 @@ var path = require('path')
 
 var sync = require('../lib/sync')(require('../config/purest'))
 var parse = require('../lib/parse')()
+var stats = require('../lib/stats')
 var render = require('../lib/render')
 
 
@@ -63,7 +65,7 @@ else if (argv.parse) {
       if (argv.out) {
         fs.writeFileSync(
           path.resolve(process.cwd(), argv.out, 'finance.json'),
-          JSON.stringify(result, null, 2),
+          JSON.stringify(result),
           'utf8'
         )
       }
@@ -72,6 +74,21 @@ else if (argv.parse) {
       }
     })
     .catch((err) => console.error(err))
+}
+
+else if (argv.stats) {
+  var finance = require(path.resolve(process.cwd(), argv.stats))
+  var result = stats.map((stat) => stat(finance))
+  if (argv.out) {
+    fs.writeFileSync(
+      path.resolve(process.cwd(), argv.out, 'stats.json'),
+      JSON.stringify(result),
+      'utf8'
+    )
+  }
+  else {
+    console.log(result)
+  }
 }
 
 else if (argv.render) {
