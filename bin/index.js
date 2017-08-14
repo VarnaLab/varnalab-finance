@@ -9,6 +9,8 @@ if (argv.help) {
   console.log('--stats /path/to/parsed/finance.json')
   console.log('--render /path/to/generated/stats.json')
   console.log('--out /path/to/output/location/')
+  console.log('--auth /path/to/auth.json')
+  console.log('--env environment')
   process.exit()
 }
 
@@ -22,6 +24,8 @@ if (!argv.sync && !argv.parse && !argv.stats && !argv.render) {
   process.exit()
 }
 
+var env = process.env.NODE_ENV || argv.env || 'development'
+
 
 var fs = require('fs')
 var path = require('path')
@@ -34,6 +38,21 @@ var render = require('../lib/render')
 
 if (argv.sync) {
   ;(async () => {
+    var auth
+    if (argv.auth) {
+      auth = require(path.resolve(process.cwd(), argv.auth))
+      if (auth[env].expires <= new Date().getTime()) {
+        var {access_token} = await sync.refresh(auth[env])
+        auth[env].user.token = access_token
+        auth[env].expires = new Date().getTime() + (3600 * 1000)
+        fs.writeFileSync(
+          path.resolve(process.cwd(), argv.auth),
+          JSON.stringify(auth, null, 2),
+          'utf8'
+        )
+      }
+    }
+
     var sheets = await sync.spreadsheet(argv.id)
 
     // specific year
@@ -41,7 +60,7 @@ if (argv.sync) {
       sheets = sheets.filter((sheet) => sheet.year === argv.sync)
     }
 
-    var files = await sync.files(argv.id, sheets)
+    var files = await sync.files(argv.id, sheets, auth[env])
 
     sheets.forEach((sheet, index) => {
       if (argv.out) {

@@ -6,6 +6,13 @@
           "alias": "__default"
         }
       }
+    },
+    "https://accounts.google.com": {
+      "o/oauth2/{endpoint}": {
+        "__path": {
+          "alias": "oauth"
+        }
+      }
     }
   }
 }

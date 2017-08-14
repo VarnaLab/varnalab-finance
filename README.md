@@ -45,3 +45,25 @@ node bin/ \
 ```
 
 ## Omit `--out` to write to stdout
+
+## `--auth` path to auth config
+
+`scope: https://www.googleapis.com/auth/drive.readonly`
+
+```json
+{
+  "development": {
+    "app": {
+      "key": "",
+      "secret": ""
+    },
+    "user": {
+      "token": "",
+      "refresh": ""
+    },
+    "expires": 0
+  }
+}
+```
+
+## `--env` config environment
