@@ -53,15 +53,17 @@ node bin/ \
 ```json
 {
   "development": {
-    "app": {
-      "key": "",
-      "secret": ""
-    },
-    "user": {
-      "token": "",
-      "refresh": ""
-    },
-    "expires": 0
+    "google": {
+      "app": {
+        "key": "",
+        "secret": ""
+      },
+      "user": {
+        "token": "",
+        "refresh": "",
+        "expires": 0
+      }
+    }
   }
 }
 ```
