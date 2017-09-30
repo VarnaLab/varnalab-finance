@@ -41,10 +41,10 @@ if (argv.sync) {
     var auth
     if (argv.auth) {
       auth = require(path.resolve(process.cwd(), argv.auth))
-      if (auth[env].expires <= new Date().getTime()) {
+      if (auth[env].google.user.expires <= new Date().getTime()) {
         var {access_token} = await sync.refresh(auth[env])
-        auth[env].user.token = access_token
-        auth[env].expires = new Date().getTime() + (3600 * 1000)
+        auth[env].google.user.token = access_token
+        auth[env].google.user.expires = new Date().getTime() + (3600 * 1000)
         fs.writeFileSync(
           path.resolve(process.cwd(), argv.auth),
           JSON.stringify(auth, null, 2),
